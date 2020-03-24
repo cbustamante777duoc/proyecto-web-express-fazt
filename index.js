@@ -25,14 +25,15 @@ app.post('/user/:id',(req,res)=>{
 });
 
 //ruta about
-app.put('/contact',(req,res)=>{
-    res.send('peticion put');
+app.put('/user/:id',(req,res)=>{
+    console.log(req.body);
+    res.send(`usuario ${req.params.id} updated`);
 
 });
 
 //ruta test
-app.delete('/test',(req,res)=>{
-    res.send('peticion delete');
+app.delete('/user/:userId',(req,res)=>{
+    res.send(`user ${req.params.userId} deleted`);
 
 });
 
