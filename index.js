@@ -1,9 +1,30 @@
 
 const express = require('express');
-
+//middleware
+const morgan = require('morgan');
 const app = express();
-
+/*
+/**
+ * req.protocol igual protocolo de http
+ * req.get('host') = 'localhost'
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+/*
+function looger(req,res,next){
+    console.log(`protocolo: ${req.protocol}||
+     ${req.get('host')}||
+    ruta:${req.originalUrl}`);
+    next();
+}
+*/
 app.use(express.json());
+//app.use(looger);
+
+//uso de middleware
+app.use(morgan('dev'));
 
 //ruta inicial
 app.get('/user',(req,res)=>{
@@ -37,11 +58,14 @@ app.delete('/user/:userId',(req,res)=>{
 
 });
 
+app.use(express.static('public'))
+
 app.listen(3000,()=>{
     console.log('servidor funcionado en puerto 3000');
 
 });
 
+//npx nodemon index.js
 
 
 
